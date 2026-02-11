@@ -1878,6 +1878,13 @@ body::before {
     border-color: var(--teal-glow);
 }
 
+/* Fix for Select Options on Dark Mode */
+.form-group select option {
+    background-color: #0b151d;
+    color: var(--text-white);
+    padding: 10px;
+}
+
 .btn-submit {
     width: 100%;
     padding: 18px;
