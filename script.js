@@ -134,7 +134,16 @@ let counterActivated = false;
 
 function animateCounters() {
     counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-count'));
+        // Отримуємо цільове значення з тексту або атрибута
+        const rawText = counter.textContent.trim();
+        const target = parseInt(rawText.replace(/\D/g, '')) || parseInt(counter.getAttribute('data-count'));
+
+        // Якщо не вдалося отримати число, пропускаємо
+        if (!target) return;
+
+        // Зберігаємо суфікс (наприклад, "+")
+        const suffix = rawText.replace(/[0-9]/g, '');
+
         const duration = 2000;
         const increment = target / (duration / 16);
         let current = 0;
@@ -142,10 +151,10 @@ function animateCounters() {
         const updateCounter = () => {
             current += increment;
             if (current < target) {
-                counter.textContent = Math.floor(current);
+                counter.textContent = Math.floor(current) + suffix;
                 requestAnimationFrame(updateCounter);
             } else {
-                counter.textContent = target;
+                counter.textContent = target + suffix;
             }
         };
 
@@ -470,11 +479,11 @@ function renderVacancies() {
                     </div>` : ''}
                     
                     <div class="vacancy-action">
-                        <a href="${vacancy.url || '#apply'}" target="_blank" class="btn-apply">
+                        <a href="#contacts" class="btn-apply" onclick="document.getElementById('contacts').scrollIntoView({behavior: 'smooth'});">
                             <span class="iconify" data-icon="mdi:send"></span>
                             Подати заявку
                         </a>
-                        ${vacancy.url ? `<a href="${vacancy.url}" target="_blank" class="vacancy-ext-link">Детальніше на lobbyx.army →</a>` : ''}
+                        ${vacancy.url ? `<a href="${vacancy.url}" target="_blank" class="vacancy-ext-link">Деталі (LobbyX) →</a>` : ''}
                     </div>
                 </div>
             </div>

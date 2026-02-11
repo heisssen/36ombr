@@ -763,7 +763,6 @@ body::before {
 .text-stroke-bronze {
     color: transparent;
     -webkit-text-stroke: 1px var(--bronze);
-    text-stroke: 1px var(--bronze);
 }
 
 .about-lead {
