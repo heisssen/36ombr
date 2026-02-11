@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36 ОБрМП | SPADOK</title>
+    <meta name="description" content="36 окрема бригада морської піхоти. Вірні завжди. Долучайся до легенди.">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;600;700&family=Teko:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div id="loader" class="loader">
+        <div class="loader-content">
+            <img src="logo.png" alt="36 Logo" class="loader-logo">
+            <div class="loader-text">БОРІТЕСЯ - ПОБОРЕТЕ</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SCROLL PROGRESS -->
+    <div class="scroll-progress"></div>
+
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-border"></div>
+        <div class="nav-container">
+            <a href="#" class="brand">
+                <img src="logo.png" alt="36 Logo" class="brand-logo">
+                <div class="brand-text">
+                    <span class="brand-title">36 ОБрМП</span>
+                    <span class="brand-subtitle">БОРІТЕСЯ - ПОБОРЕТЕ</span>
+                </div>
+            </a>
+
+            <ul class="nav-menu">
+                <li><a href="#about" class="nav-link">Хто ми</a></li>
+                <li><a href="#path" class="nav-link">Формати</a></li>
+                <li><a href="#vacancies" class="nav-link">Вакансії</a></li>
+                <li><a href="#reviews" class="nav-link">Відгуки</a></li>
+                <li><a href="#faq" class="nav-link">FAQ</a></li>
+                <li><a href="#contacts" class="nav-link">Контакти</a></li>
+            </ul>
+
+            <a href="#contacts" class="btn-cta">ДОЛУЧИТИСЬ</a>
+
+            <button class="mobile-toggle" id="mobileToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#about">Хто ми</a>
+            <a href="#path">Формати</a>
+            <a href="#vacancies">Вакансії</a>
+            <a href="#reviews">Відгуки</a>
+            <a href="#faq">FAQ</a>
+            <a href="#contacts">Контакти</a>
+            <a href="#contacts" class="mobile-cta">Долучитись</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <h1 class="hero-title">
+                ВІРНІ <br> <span class="gold-text">ЗАВЖДИ</span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Не просто служба. Не просто бригада. <br>
+                Це вибір тих, хто готовий стати частиною легенди.
+            </p>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="9">0</div>
+                    <div class="stat-label">Років служби</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="2500">0</div>
+                    <div class="stat-label">Бійців</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label">Операцій</div>
+                </div>
+            </div>
+
+            <a href="#path" class="btn-hero">Обрати свій шлях</a>
+        </div>
+
+        <a href="#about" class="scroll-indicator">
+            <span class="scroll-text">ГОРТАТИ</span>
+            <div class="scroll-line"></div>
+        </a>
+        </div>
+    </section>
+
+    <!-- ABOUT — Cinematic Layout -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-cinematic">
+                <div class="about-text-col">
+                    <span class="about-label">EST. 2015</span>
+                    <h2 class="about-headline">ЛЕГЕНДА,<br><span class="gold-text">ЗАГАРТОВАНА<br>ВОГНЕМ</span></h2>
+
+                    <p class="about-lead">
+                        <strong>36 ОБрМП</strong> — це сталевий кулак Морської піхоти України. Ми не просто
+                        підрозділ. Ми — братерство, народжене в боях за Маріуполь, загартоване в
+                        обороні Миколаєва та стверджене на плацдармах Дніпра.
+                    </p>
+                    <p class="about-body">
+                        Наші корені сягають 2015 року, коли найсміливіші добровольці взяли
+                        зброю, щоб захищати рідну землю. З тих пір ми пройшли крізь усі ключові
+                        битви на Півдні.
+                    </p>
+
+                    <!-- Timeline -->
+                    <div class="about-timeline">
+                        <div class="about-tl-item">
+                            <span class="about-tl-year">2015</span>
+                            <div class="about-tl-content">
+                                <h4>ФОРМУВАННЯ</h4>
+                                <p>Об'єднання вірних присязі батальйонів. Широкине, Водяне.</p>
+                            </div>
+                        </div>
+                        <div class="about-tl-item active">
+                            <span class="about-tl-year">2022</span>
+                            <div class="about-tl-content">
+                                <h4>МАРІУПОЛЬ & МИКОЛАЇВ</h4>
+                                <p>Героїчна оборона Азовмашу. Зупинка ворога на Півдні.</p>
+                            </div>
+                        </div>
+                        <div class="about-tl-item">
+                            <span class="about-tl-year">2023-2024</span>
+                            <div class="about-tl-content">
+                                <h4>ПРОРИВ</h4>
+                                <p>Звільнення Півдня. Штурм лівого берега. Кринки.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quote -->
+                    <blockquote class="about-quote">
+                        <em>Морська піхота не відступає. Вона розвертається і наступає в іншому напрямку.</em>
+                    </blockquote>
+                </div>
+
+                <div class="about-photos-col">
+                    <div class="about-photo-main">
+                        <img src="legacy-photo.webp" alt="Боєць 36 ОБрМП">
+                    </div>
+                    <div class="about-photo-badge">
+                        <img src="legacy-photo-2.jpg" alt="Шеврон 36 ОБрМП">
+                        <div class="about-coords">
+                            <span>46°58' N 31°59' E</span>
+                            <span>SECTOR: SOUTH</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PATH -->
+    <section id="path" class="path">
+        <div class="tactical-grid"></div>
+
+        <div class="container">
+            <div class="section-header">
+                <div class="header-decoration">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon iconify" data-icon="mdi:crosshairs-gps"></span>
+                    <span class="deco-line"></span>
+                </div>
+                <h2 class="section-title">Формати вступу</h2>
+                <p class="section-subtitle">Обери шлях, що відповідає твоїм цілям</p>
+            </div>
+
+            <div class="path-grid">
+                <div class="path-card">
+                    <div class="path-icon">
+                        <span class="iconify" data-icon="mdi:run-fast"></span>
+                    </div>
+                    <h3>Контракт 18-24</h3>
+                    <p class="path-desc">Для тих, хто цінує свободу маневру</p>
+                    <ul class="path-features">
+                        <li><span class="check iconify" data-icon="mdi:check-bold"></span>Лише 1 рік гарантованої служби
+                        </li>
+                        <li><span class="check iconify" data-icon="mdi:check-bold"></span>Право на звільнення після року
+                        </li>
+                        <li><span class="check iconify" data-icon="mdi:check-bold"></span>Підйомні та пільги на навчання
+                        </li>
+                    </ul>
+                    <a href="contract-18-24.html" class="btn-path">Деталі програми</a>
+                </div>
+
+                <div class="path-card featured">
+                    <div class="path-icon">
+                        <span class="iconify" data-icon="mdi:shield-lock-outline"></span>
+                    </div>
+                    <h3>Прямий рекрутинг</h3>
+                    <p class="path-desc">Для тих, хто бере долю у свої руки</p>
+                    <ul class="path-features">
+                        <li><span class="check iconify" data-icon="mdi:check-bold"></span>Оминаючи ТЦК та лотерею</li>
+                        <li><span class="check iconify" data-icon="mdi:check-bold"></span>Гарантія обраної посади в 36
+                            ОБрМП</li>
+                        <li><span class="check iconify" data-icon="mdi:check-bold"></span>Персональний супровід</li>
+                    </ul>
+                    <a href="direct-recruiting.html" class="btn-path featured">Деталі та вакансії</a>
+                </div>
+
+                <div class="path-card">
+                    <div class="path-icon">
+                        <span class="iconify" data-icon="mdi:medal-outline"></span>
+                    </div>
+                    <h3>Професійна кар'єра</h3>
+                    <p class="path-desc">Для тих, хто будує майбутнє у війську</p>
+                    <ul class="path-features">
+                        <li><span class="check iconify" data-icon="mdi:check-bold"></span>Повний соцпакет та
+                            стабільність</li>
+                        <li><span class="check iconify" data-icon="mdi:check-bold"></span>Забезпечення або компенсація
+                            житла</li>
+                        <li><span class="check iconify" data-icon="mdi:check-bold"></span>Кар'єрний зріст та навчання за
+                            кордоном</li>
+                    </ul>
+                    <a href="career.html" class="btn-path">Умови служби</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VACANCIES -->
+    <section id="vacancies" class="vacancies">
+        <div class="container">
+            <div class="section-header">
+                <div class="header-decoration">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon iconify" data-icon="mdi:briefcase-outline"></span>
+                    <span class="deco-line"></span>
+                </div>
+                <h2 class="section-title">Вакансії</h2>
+                <p class="section-subtitle">Знайди свою роль у команді</p>
+            </div>
+
+            <div class="vacancy-filters">
+                <button class="all-btn filter-btn active">Всі вакансії</button>
+                <div class="tag-filters" id="tagFilters"></div>
+            </div>
+
+            <div class="vacancy-list" id="vacancyGrid"></div>
+
+            <div class="vacancy-load-more">
+                <a href="#" class="btn-apply" id="loadMoreBtn" style="display:none;">Завантажити ще</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section id="reviews" class="reviews">
+        <div class="container">
+            <div class="section-header">
+                <div class="header-decoration">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon iconify" data-icon="mdi:account-voice"></span>
+                    <span class="deco-line"></span>
+                </div>
+                <h2 class="section-title">Голоси братства</h2>
+                <p class="section-subtitle">Історії тих, хто пройшов цей шлях</p>
+            </div>
+
+            <div class="reviews-carousel">
+                <div class="reviews-track" id="reviewsTrack">
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-author">
+                                <div class="review-avatar">ОК</div>
+                                <div>
+                                    <h4>Олексій К.</h4>
+                                    <p>Командир відділення • 2 роки</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <p class="review-text">"Прийшов через прямий рекрутинг. Ніяких черг у ТЦК, все чітко і швидко.
+                            Пройшов підготовку, отримав посаду, яку хотів. Братство тут справжнє."</p>
+                        <span class="review-date">Січень 2024</span>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-author">
+                                <div class="review-avatar">ДВ</div>
+                                <div>
+                                    <h4>Дмитро В.</h4>
+                                    <p>Пілот FPV • 1.5 року</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <p class="review-text">"IT-шник з цивільного. Вирішив піти в дрони. Навчання на рівні, техніка
+                            нова, команда професійна. Є можливість розвиватися і робити реальний внесок."</p>
+                        <span class="review-date">Грудень 2023</span>
+                    </div>
+
+                    <div class="review-card">
+                        <div class="review-header">
+                            <div class="review-author">
+                                <div class="review-avatar">МЛ</div>
+                                <div>
+                                    <h4>Максим Л.</h4>
+                                    <p>Стрілець-санітар • 8 місяців</p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <p class="review-text">"Пішов без досвіду, через контракт 18-24. Спочатку було складно, але
+                            командири допомагають. Зараз відчуваю себе частиною справжньої команди. Не шкодую."</p>
+                        <span class="review-date">Лютий 2024</span>
+                    </div>
+                </div>
+
+                <div class="carousel-controls">
+                    <button class="carousel-btn" id="prevReview">
+                        <span class="iconify" data-icon="mdi:chevron-left"></span>
+                    </button>
+                    <div class="carousel-dots" id="reviewDots"></div>
+                    <button class="carousel-btn" id="nextReview">
+                        <span class="iconify" data-icon="mdi:chevron-right"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <div class="header-decoration">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon iconify" data-icon="mdi:frequently-asked-questions"></span>
+                    <span class="deco-line"></span>
+                </div>
+                <h2 class="section-title">Часті питання</h2>
+                <p class="section-subtitle">Відповіді на те, що найчастіше запитують</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Як подати заявку на вступ?</h3>
+                        <span class="faq-toggle iconify" data-icon="mdi:chevron-down"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Все просто: оберіть вакансію у розділі "Вакансії" та натисніть "Подати заявку". Ви
+                            автоматично перейдете на платформу LobbyX, де заповните коротку форму. Якщо комфортніше —
+                            пишіть нам у Telegram або дзвоніть на гарячу лінію. Рекрутинговий центр бригади супроводжує
+                            кожного кандидата персонально: від першого дзвінка до першого дня на позиції.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Чи потрібен бойовий досвід?</h3>
+                        <span class="faq-toggle iconify" data-icon="mdi:chevron-down"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Більшість вакансій не вимагають попереднього військового досвіду. Ми віримо в людей, а не в
+                            резюме. Кожен новобранець проходить якісну підготовку в навчальному центрі бригади або за
+                            кордоном у партнерів з НАТО. Досвідчені інструктори, які пройшли справжній вогонь,
+                            передадуть тобі все, що потрібно знати для виживання та перемоги.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Яке грошове забезпечення?</h3>
+                        <span class="faq-toggle iconify" data-icon="mdi:chevron-down"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Базове грошове забезпечення — від 23 500 грн, але це лише стартова планка. З надбавками за
+                            виконання завдань у бойовій зоні сума сягає до 190 000 грн. Додатково: повне безкоштовне
+                            харчування, проживання, майнове забезпечення, медобслуговування. Плюс одноразова виплата 25
+                            000 грн при підписанні контракту. Твоя робота цінується реально.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Що таке контракт 18-24?</h3>
+                        <span class="faq-toggle iconify" data-icon="mdi:chevron-down"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Це програма для молоді від 18 до 24 років, яка передбачає 1 рік гарантованої служби з правом
+                            звільнення після його завершення. Учасники отримують підйомні, пільги на навчання та повний
+                            соціальний пакет.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Чи можна обрати посаду самостійно?</h3>
+                        <span class="faq-toggle iconify" data-icon="mdi:chevron-down"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Так. При прямому рекрутингу ви обираєте конкретну вакансію, і бригада гарантує проходження
+                            служби саме на обраній посаді. Це головна відмінність від мобілізації через ТЦК, де посаду
+                            обирають за вас.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Як проходить навчання?</h3>
+                        <span class="faq-toggle iconify" data-icon="mdi:chevron-down"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Навчання проводиться на базі власного навчального центру бригади перед вступом на посаду. За
+                            потреби — навчання за кордоном. Інструктори мають реальний бойовий досвід і готові передати
+                            унікальні знання та навички кожному новобранцю.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTS -->
+    <section id="contacts" class="contacts">
+        <div class="container">
+            <div class="section-header">
+                <div class="header-decoration">
+                    <span class="deco-line"></span>
+                    <span class="deco-icon iconify" data-icon="mdi:email-outline"></span>
+                    <span class="deco-line"></span>
+                </div>
+                <h2 class="section-title">Зв'язок з братством</h2>
+                <p class="section-subtitle">Готовий зробити перший крок?</p>
+            </div>
+
+            <div class="contacts-grid">
+                <form class="contact-form" id="contactForm">
+                    <h3>Залишити заявку</h3>
+
+                    <div class="form-group">
+                        <label>Ім'я та прізвище</label>
+                        <input type="text" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Телефон</label>
+                            <input type="tel" placeholder="+380" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Що вас цікавить?</label>
+                        <select required>
+                            <option value="">Оберіть варіант</option>
+                            <option>Контракт 18-24</option>
+                            <option>Прямий рекрутинг</option>
+                            <option>Професійна кар'єра</option>
+                            <option>Конкретна вакансія</option>
+                            <option>Інше питання</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Повідомлення</label>
+                        <textarea rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Надіслати заявку</button>
+                </form>
+
+                <div class="contact-info">
+                    <div class="contact-block">
+                        <span class="iconify contact-icon" data-icon="mdi:phone"></span>
+                        <div>
+                            <h4>Гаряча лінія</h4>
+                            <a href="tel:+380501234567">+380 (50) 123-45-67</a>
+                            <p>Пн-Пт: 09:00 - 18:00</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-block">
+                        <span class="iconify contact-icon" data-icon="mdi:email"></span>
+                        <div>
+                            <h4>Email</h4>
+                            <a href="mailto:recruit@36brmp.mil.ua">recruit@36brmp.mil.ua</a>
+                            <p>Відповідь протягом 24 годин</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-block">
+                        <span class="iconify contact-icon" data-icon="mdi:send"></span>
+                        <div>
+                            <h4>Telegram</h4>
+                            <a href="https://t.me/36Brigade" target="_blank">@36Brigade</a>
+                            <p>Найшвидший спосіб зв'язку</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-block">
+                        <span class="iconify contact-icon" data-icon="mdi:map-marker"></span>
+                        <div>
+                            <h4>Адреса</h4>
+                            <p>м. Миколаїв<br>вул. Морська, 10</p>
+                            <span class="location-note">Пункт відбору кандидатів</span>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="#"><span class="iconify" data-icon="mdi:facebook"></span></a>
+                        <a href="#"><span class="iconify" data-icon="mdi:instagram"></span></a>
+                        <a href="#"><span class="iconify" data-icon="mdi:youtube"></span></a>
+                        <a href="#"><span class="iconify" data-icon="mdi:twitter"></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="footer-brand">
+                        <img src="logo.png" alt="36 ОБрМП">
+                        <div>
+                            <h3>36 ОБрМП</h3>
+                            <p>Борітеся - поборете</p>
+                        </div>
+                    </div>
+                    <p class="footer-desc">Морська піхота України.<br>Вірні завжди, вірні всюди.<br>Від 2015 року.</p>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Навігація</h4>
+                    <a href="#about">Хто ми</a>
+                    <a href="#path">Формати входу</a>
+                    <a href="#vacancies">Вакансії</a>
+                    <a href="#reviews">Відгуки</a>
+                    <a href="#contacts">Контакти</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Інформація</h4>
+                    <a href="index.html#about">Про бригаду</a>
+                    <a href="contract-18-24.html">Контракт 18-24</a>
+                    <a href="direct-recruiting.html">Прямий рекрутинг</a>
+                    <a href="career.html">Професійна кар'єра</a>
+                    <a href="index.html#faq">Часті питання</a>
+                </div>
+
+                <div class="footer-col">
+                    <h4>Контакти</h4>
+                    <a href="tel:+380501234567">+380 (50) 123-45-67</a>
+                    <a href="mailto:recruit@36brmp.mil.ua">recruit@36brmp.mil.ua</a>
+                    <p>м. Миколаїв<br>вул. Морська, 10</p>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2024 36 ОБрМП. Всі права захищено.</p>
+                <div class="footer-socials">
+                    <a href="#"><span class="iconify" data-icon="mdi:facebook"></span></a>
+                    <a href="#"><span class="iconify" data-icon="mdi:instagram"></span></a>
+                    <a href="#"><span class="iconify" data-icon="mdi:telegram"></span></a>
+                    <a href="#"><span class="iconify" data-icon="mdi:youtube"></span></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

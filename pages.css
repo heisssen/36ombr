@@ -1,0 +1,598 @@
+/* ============================================
+   PAGES.CSS — Sub-page specific styles
+   ============================================ */
+
+/* PAGE HERO */
+.page-hero {
+    position: relative;
+    min-height: 55vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 100px 0 60px;
+    overflow: hidden;
+}
+
+.page-hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3) grayscale(30%);
+    z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: radial-gradient(circle, transparent 0%, var(--deep-sea) 90%),
+        linear-gradient(to top, var(--deep-sea) 15%, transparent 50%);
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    padding: 0 24px;
+    margin: 0 auto;
+}
+
+.page-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 24px;
+    font-size: 13px;
+}
+
+.page-breadcrumb a {
+    color: var(--text-gray);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.page-breadcrumb a:hover {
+    color: var(--teal-glow);
+}
+
+.page-breadcrumb span {
+    color: #555;
+}
+
+.page-breadcrumb .current {
+    color: var(--bronze);
+}
+
+.page-hero-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+}
+
+.page-hero-subtitle {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-gray);
+    max-width: 600px;
+}
+
+/* PAGE CONTENT */
+.page-content {
+    padding: 60px 0 0;
+}
+
+.content-section {
+    padding: 60px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.content-section:last-child {
+    border-bottom: none;
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+
+.content-title {
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--text-white);
+    margin-bottom: 24px;
+    line-height: 1.1;
+}
+
+.content-title.centered {
+    text-align: center;
+}
+
+.content-text p {
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    font-size: 15px;
+}
+
+/* HIGHLIGHT CARDS */
+.content-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.highlight-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-left: 3px solid var(--teal-glow);
+    transition: 0.3s;
+}
+
+.highlight-card:hover {
+    background: rgba(3, 92, 107, 0.05);
+    border-color: rgba(3, 92, 107, 0.3);
+    transform: translateX(5px);
+}
+
+.highlight-icon {
+    font-size: 32px;
+    color: var(--teal-glow);
+    flex-shrink: 0;
+}
+
+.highlight-card h4 {
+    font-family: 'Teko', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.highlight-card p {
+    font-size: 13px;
+    color: #888;
+    margin: 0;
+}
+
+/* BENEFITS GRID */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.benefit-item {
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    transition: all 0.4s ease;
+}
+
+.benefit-item:hover {
+    background: rgba(255, 255, 255, 0.03);
+    border-color: var(--teal-glow);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(3, 92, 107, 0.15);
+}
+
+.benefit-icon {
+    font-size: 40px;
+    color: var(--teal-glow);
+    margin-bottom: 16px;
+    display: block;
+    transition: 0.3s;
+}
+
+.benefit-item:hover .benefit-icon {
+    color: var(--bronze);
+    transform: scale(1.1);
+}
+
+.benefit-item h4 {
+    font-family: 'Teko', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.benefit-item p {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* PROCESS STEPS */
+.process-steps {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.step-item {
+    display: flex;
+    gap: 24px;
+    padding: 24px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.3s;
+}
+
+.step-item:hover {
+    padding-left: 10px;
+}
+
+.step-item:last-child {
+    border-bottom: none;
+}
+
+.step-number {
+    font-family: 'Teko', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(3, 92, 107, 0.3);
+    line-height: 1;
+    min-width: 60px;
+    transition: 0.3s;
+}
+
+.step-item:hover .step-number {
+    color: var(--teal-glow);
+}
+
+.step-content h4 {
+    font-family: 'Teko', sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    color: var(--text-white);
+}
+
+.step-content p {
+    font-size: 14px;
+    color: #888;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* COMPARISON GRID */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.comparison-card {
+    padding: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.comparison-card.bad {
+    background: rgba(200, 50, 50, 0.03);
+    border-color: rgba(200, 50, 50, 0.15);
+}
+
+.comparison-card.good {
+    background: rgba(3, 92, 107, 0.05);
+    border-color: rgba(3, 92, 107, 0.3);
+}
+
+.comparison-card h3 {
+    font-family: 'Teko', sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.comparison-card.bad h3 .iconify {
+    color: #c44;
+}
+
+.comparison-card.good h3 .iconify {
+    color: var(--teal-glow);
+}
+
+.comparison-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.comparison-card ul li {
+    padding: 10px 0;
+    font-size: 14px;
+    color: var(--text-gray);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    line-height: 1.7;
+}
+
+.comparison-card ul li:last-child {
+    border-bottom: none;
+}
+
+/* SALARY GRID */
+.salary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+}
+
+.salary-card {
+    padding: 32px;
+    background: rgba(255, 255, 255, 0.015);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    text-align: center;
+    transition: 0.3s;
+}
+
+.salary-card:hover {
+    border-color: var(--teal-glow);
+    transform: translateY(-5px);
+}
+
+.salary-card.featured {
+    border-color: var(--bronze);
+    background: rgba(197, 160, 89, 0.03);
+}
+
+.salary-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-gray);
+    margin-bottom: 12px;
+}
+
+.salary-amount {
+    font-family: 'Teko', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--teal-glow);
+    margin-bottom: 12px;
+}
+
+.salary-card.featured .salary-amount {
+    color: var(--bronze);
+}
+
+.salary-card p {
+    font-size: 13px;
+    color: #888;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* CTA BOX */
+.cta-section {
+    border-bottom: none !important;
+    padding-bottom: 80px;
+}
+
+.cta-box {
+    text-align: center;
+    padding: 60px 40px;
+    background: rgba(3, 92, 107, 0.05);
+    border: 1px solid rgba(3, 92, 107, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--teal-glow), var(--bronze), transparent);
+}
+
+.cta-box h2 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    margin-bottom: 16px;
+    line-height: 1.2;
+}
+
+.cta-box p {
+    font-size: 16px;
+    color: var(--text-gray);
+    margin-bottom: 32px;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   APPLICATION FORM
+   ============================================ */
+.apply-form {
+    max-width: 700px;
+    margin: 40px auto 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-gray);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    padding: 14px 16px;
+    outline: none;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--teal-glow);
+    background: rgba(3, 92, 107, 0.05);
+    box-shadow: 0 0 15px rgba(3, 92, 107, 0.15);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #555;
+}
+
+.form-group select option {
+    background: var(--deep-sea);
+    color: var(--text-white);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+}
+
+.form-submit-btn {
+    cursor: pointer;
+    font-family: 'Cinzel', serif;
+}
+
+.form-note {
+    font-size: 14px;
+    color: var(--text-gray);
+}
+
+.tg-link {
+    color: var(--teal-glow);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.tg-link:hover {
+    color: #fff;
+    text-shadow: 0 0 10px var(--teal-glow);
+}
+
+.form-success {
+    text-align: center;
+    padding: 40px 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.form-success h3 {
+    font-family: 'Teko', sans-serif;
+    font-size: 32px;
+    color: var(--teal-glow);
+    margin-bottom: 12px;
+}
+
+.form-success p {
+    color: var(--text-gray);
+    font-size: 15px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .comparison-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .page-hero {
+        min-height: 45vh;
+        padding: 80px 0 40px;
+    }
+
+    .page-hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+    }
+
+    .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .salary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
