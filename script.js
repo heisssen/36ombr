@@ -623,8 +623,28 @@ if (reviewsTrack) {
 }
 
 // ===================================
-// CONTACT FORM
+// GALLERY VIDEO AUTOPLAY
 // ===================================
+const galleryVideos = document.querySelectorAll('.gallery-item video');
+
+if (galleryVideos.length > 0) {
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.play().catch(e => console.log('Autoplay prevented:', e));
+            } else {
+                entry.target.pause();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    galleryVideos.forEach(video => {
+        videoObserver.observe(video);
+        // Ensure muted attribute is set for autoplay
+        video.muted = true;
+    });
+}
+
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
@@ -645,6 +665,90 @@ if (contactForm) {
 // ===================================
 // SCROLL REVEAL
 // ===================================
+// ===================================
+// MEDIA GALLERY LIGHTBOX
+// ===================================
+const lightbox = document.getElementById('lightbox');
+const lightboxContent = document.querySelector('.lightbox-content');
+const lightboxClose = document.querySelector('.lightbox-close');
+const galleryItems = document.querySelectorAll('.gallery-item');
+
+if (lightbox) {
+    galleryItems.forEach(item => {
+        item.addEventListener('click', () => {
+            const content = item.querySelector('.gallery-content');
+            // Check if it has a placeholder
+            const videoPlaceholder = content.querySelector('.video-placeholder');
+            const imagePlaceholder = content.querySelector('.image-placeholder');
+
+            lightboxContent.innerHTML = ''; // Clear previous content
+
+            if (videoPlaceholder) {
+                // If it's a placeholder, just show the text in a nicer way
+                const pText = videoPlaceholder.querySelector('p').innerText;
+                lightboxContent.innerHTML = `
+                    <div style="color:white; text-align:center; padding: 40px;">
+                        <span class="iconify" data-icon="mdi:play-circle-outline" style="font-size: 64px; opacity: 0.8;"></span>
+                        <h3>Відео не знайдено</h3>
+                        <p>${pText}</p>
+                    </div>
+                `;
+            } else if (imagePlaceholder) {
+                const pText = imagePlaceholder.querySelector('p').innerText;
+                lightboxContent.innerHTML = `
+                    <div style="color:white; text-align:center; padding: 40px;">
+                        <span class="iconify" data-icon="mdi:image-outline" style="font-size: 64px; opacity: 0.8;"></span>
+                        <h3>Зображення не знайдено</h3>
+                        <p>${pText}</p>
+                    </div>
+                `;
+            } else {
+                // Real content
+                const img = content.querySelector('img');
+                const video = content.querySelector('video');
+
+                if (img) {
+                    const clone = img.cloneNode(true);
+                    lightboxContent.appendChild(clone);
+                } else if (video) {
+                    const clone = video.cloneNode(true);
+                    clone.controls = true; // Enable controls in lightbox
+                    clone.muted = false; // Unmute in lightbox (optional)
+                    lightboxContent.appendChild(clone);
+                    clone.play();
+                }
+            }
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        });
+    });
+
+    // Close Lightbox
+    lightboxClose.addEventListener('click', () => {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = '';
+        lightboxContent.innerHTML = ''; // Stop video
+    });
+
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            lightboxContent.innerHTML = '';
+        }
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+            lightboxContent.innerHTML = '';
+        }
+    });
+}
+
 // ===================================
 // SCROLL REVEAL
 // ===================================
