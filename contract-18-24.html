@@ -16,12 +16,14 @@
 </head>
 
 <body>
-    <div id="loader" class="loader">
-        <div class="loader-content">
-            <img src="logo.png" alt="36 Logo" class="loader-logo">
-            <div class="loader-text">БОРІТЕСЯ - ПОБОРЕТЕ</div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
+    <div class="loading-screen" id="loader">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="loading-emblem">36</div>
+            </div>
+            <div class="loading-text">БОРІТЕСЯ - ПОБОРЕТЕ</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
             </div>
         </div>
     </div>
@@ -63,7 +65,7 @@
     </nav>
 
     <!-- PAGE HERO -->
-    <section class="page-hero">
+    <section class="page-hero reveal-on-scroll">
         <div class="page-hero-bg" style="background-image: url('hero-dark.png');"></div>
         <div class="hero-overlay"></div>
         <div class="page-hero-content">
@@ -85,7 +87,7 @@
         <div class="container">
 
             <!-- INTRO -->
-            <section class="content-section">
+            <section class="content-section reveal-on-scroll">
                 <div class="content-grid">
                     <div class="content-text">
                         <h2 class="content-title">Рік, який дасть більше, ніж п'ять на цивільці</h2>
@@ -125,7 +127,7 @@
             </section>
 
             <!-- BENEFITS -->
-            <section class="content-section">
+            <section class="content-section reveal-on-scroll">
                 <h2 class="content-title centered">Що ти отримуєш</h2>
                 <div class="benefits-grid">
                     <div class="benefit-item">
@@ -162,7 +164,7 @@
             </section>
 
             <!-- PROCESS -->
-            <section class="content-section">
+            <section class="content-section reveal-on-scroll">
                 <h2 class="content-title centered">Як це працює</h2>
                 <div class="process-steps">
                     <div class="step-item">
@@ -279,7 +281,7 @@
                             <p>Борітеся - поборете</p>
                         </div>
                     </div>
-                    <p class="footer-desc">Морська піхота України.<br>Вірні завжди, вірні всюди.<br>Від 2015 року.</p>
+                    <p class="footer-desc">Морська піхота України.<br>Вірні завжди, вірні всюди.<br>Від 2014 року.</p>
                 </div>
 
                 <div class="footer-col">
@@ -320,19 +322,29 @@
         </div>
     </footer>
 
+    <div class="mobile-sticky-cta">
+        <a href="#apply" class="btn-cta">ПОДАТИ ЗАЯВКУ</a>
+    </div>
+
+    <script src="script.js"></script>
     <script>
         // LOADER
-        window.addEventListener('load', () => {
+        function hideLoader() {
             const loader = document.getElementById('loader');
-            if (loader) {
+            if (loader && !loader.classList.contains('hidden')) {
+                loader.classList.add('hidden');
                 setTimeout(() => {
-                    loader.classList.add('hidden');
-                    setTimeout(() => {
-                        loader.style.display = 'none';
-                    }, 800);
-                }, 1500);
+                    loader.style.display = 'none';
+                }, 800);
             }
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(hideLoader, 1000);
         });
+
+        // Fallback
+        setTimeout(hideLoader, 3000);
 
         // Mobile menu toggle
         const mobileToggle = document.getElementById('mobileToggle');

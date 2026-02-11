@@ -15,12 +15,14 @@
 
 <body>
 
-    <div id="loader" class="loader">
-        <div class="loader-content">
-            <img src="logo.png" alt="36 Logo" class="loader-logo">
-            <div class="loader-text">БОРІТЕСЯ - ПОБОРЕТЕ</div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
+    <div class="loading-screen" id="loader">
+        <div class="loading-content">
+            <div class="loading-logo">
+                <div class="loading-emblem">36</div>
+            </div>
+            <div class="loading-text">БОРІТЕСЯ - ПОБОРЕТЕ</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
             </div>
         </div>
     </div>
@@ -70,7 +72,7 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero">
+    <section class="hero reveal-on-scroll">
         <div class="hero-bg"></div>
         <div class="hero-overlay"></div>
 
@@ -86,7 +88,7 @@
 
             <div class="hero-stats">
                 <div class="stat-item">
-                    <div class="stat-number" data-count="9">0</div>
+                    <div class="stat-number" data-count="12">0</div>
                     <div class="stat-label">Років служби</div>
                 </div>
                 <div class="stat-item">
@@ -110,26 +112,39 @@
     </section>
 
     <!-- ABOUT — Cinematic Layout -->
-    <section id="about" class="about">
+    <section id="about" class="about reveal-on-scroll">
         <div class="container">
             <div class="about-cinematic">
                 <div class="about-text-col">
-                    <span class="about-label">EST. 2015</span>
-                    <h2 class="about-headline">ЛЕГЕНДА,<br><span class="gold-text">ЗАГАРТОВАНА<br>ВОГНЕМ</span></h2>
+                    <span class="about-label">EST. 2014</span>
+                    <h2 class="about-headline">ЛЕГЕНДА,<br><span class="text-stroke-bronze">ЗАГАРТОВАНА<br>ВОГНЕМ</span>
+                    </h2>
 
                     <p class="about-lead">
-                        <strong>36 ОБрМП</strong> — це сталевий кулак Морської піхоти України. Ми не просто
-                        підрозділ. Ми — братерство, народжене в боях за Маріуполь, загартоване в
-                        обороні Миколаєва та стверджене на плацдармах Дніпра.
+                        <strong>36 ОБрМП</strong> — це авангард Морської піхоти України. Ми — братство, що не зрадило
+                        присязі в Криму, вистояло в пеклі Маріуполя та зупинило ворога під Миколаєвом. Сталевий кулак,
+                        що завжди б'є першим.
                     </p>
                     <p class="about-body">
-                        Наші корені сягають 2015 року, коли найсміливіші добровольці взяли
-                        зброю, щоб захищати рідну землю. З тих пір ми пройшли крізь усі ключові
-                        битви на Півдні.
+                        Наш шлях почався у 2014 році. Коли інші вагалися, ми зробили вибір: вірність Народові України. З
+                        того часу ми пройшли крізь найжорстокіші битви цієї війни, ставши символом незламності та
+                        професіоналізму.
                     </p>
 
                     <!-- Timeline -->
                     <div class="about-timeline">
+                        <div class="about-tl-item">
+                            <span class="about-tl-year color-bronze">2014</span>
+                            <div class="about-tl-content">
+                                <h4>КРИМ. ВІРНІСТЬ ПРИСЯЗІ</h4>
+                                <p>Історія легендарної бригади морської піхоти почалася у Криму. У 2014 році частина
+                                    військовослужбовців 36-ї окремої бригади берегової оборони, 501-го та 1-го окремих
+                                    батальйонів морської піхоти відмовилася переходити на бік російських окупантів. Ті,
+                                    хто не зрадив присязі на вірність українському народові, вийшли на материкову
+                                    Україну. Саме вони стали хребтом та серцем 36-ї окремої бригади морської піхоти
+                                    імені контр-адмірала Михайла Білинського, сформованої у липні 2015 року.</p>
+                            </div>
+                        </div>
                         <div class="about-tl-item">
                             <span class="about-tl-year">2015</span>
                             <div class="about-tl-content">
@@ -176,7 +191,7 @@
     </section>
 
     <!-- PATH -->
-    <section id="path" class="path">
+    <section id="path" class="path reveal-on-scroll">
         <div class="tactical-grid"></div>
 
         <div class="container">
@@ -244,7 +259,7 @@
     </section>
 
     <!-- VACANCIES -->
-    <section id="vacancies" class="vacancies">
+    <section id="vacancies" class="vacancies reveal-on-scroll">
         <div class="container">
             <div class="section-header">
                 <div class="header-decoration">
@@ -257,8 +272,14 @@
             </div>
 
             <div class="vacancy-filters">
-                <button class="all-btn filter-btn active">Всі вакансії</button>
-                <div class="tag-filters" id="tagFilters"></div>
+                <div class="search-wrapper">
+                    <span class="iconify search-icon" data-icon="mdi:magnify"></span>
+                    <input type="text" id="vacancySearch" placeholder="Пошук вакансії (напр. водій, медик...)">
+                </div>
+                <div class="filters-row">
+                    <button class="all-btn filter-btn active">Всі вакансії</button>
+                    <div class="tag-filters" id="tagFilters"></div>
+                </div>
             </div>
 
             <div class="vacancy-list" id="vacancyGrid"></div>
@@ -270,7 +291,7 @@
     </section>
 
     <!-- REVIEWS -->
-    <section id="reviews" class="reviews">
+    <section id="reviews" class="reviews reveal-on-scroll">
         <div class="container">
             <div class="section-header">
                 <div class="header-decoration">
@@ -347,7 +368,7 @@
     </section>
 
     <!-- FAQ -->
-    <section id="faq" class="faq">
+    <section id="faq" class="faq reveal-on-scroll">
         <div class="container">
             <div class="section-header">
                 <div class="header-decoration">
@@ -439,7 +460,7 @@
     </section>
 
     <!-- CONTACTS -->
-    <section id="contacts" class="contacts">
+    <section id="contacts" class="contacts reveal-on-scroll">
         <div class="container">
             <div class="section-header">
                 <div class="header-decoration">
@@ -591,6 +612,10 @@
             </div>
         </div>
     </footer>
+
+    <div class="mobile-sticky-cta">
+        <a href="#contacts" class="btn-cta">ДОЛУЧИТИСЬ</a>
+    </div>
 
     <script src="script.js"></script>
 </body>

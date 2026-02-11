@@ -11,6 +11,7 @@ let visibleCount = ITEMS_PER_PAGE;
 let activeTags = new Set();
 
 // DOM ELEMENTS
+// DOM ELEMENTS
 const vacancyGrid = document.getElementById('vacancyGrid');
 const tagFiltersContainer = document.getElementById('tagFilters');
 const loadMoreBtn = document.getElementById('loadMoreBtn');
@@ -27,7 +28,7 @@ window.addEventListener('load', () => {
             setTimeout(() => {
                 loader.style.display = 'none';
             }, 800);
-        }, 1500); // Show for at least 1.5 seconds so people can see the "cool" animation
+        }, 1500);
     }
 });
 
@@ -36,13 +37,15 @@ window.addEventListener('load', () => {
 // ===================================
 const navbar = document.getElementById('navbar');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
-    }
-});
+if (navbar) {
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    });
+}
 
 // ===================================
 // MOBILE MENU
@@ -50,7 +53,7 @@ window.addEventListener('scroll', () => {
 const mobileToggle = document.getElementById('mobileToggle');
 const mobileMenu = document.getElementById('mobileMenu');
 
-if (mobileToggle) {
+if (mobileToggle && mobileMenu) {
     mobileToggle.addEventListener('click', () => {
         mobileToggle.classList.toggle('active');
         mobileMenu.classList.toggle('active');
@@ -68,12 +71,17 @@ if (mobileToggle) {
 // ===================================
 // SCROLL PROGRESS
 // ===================================
+// ===================================
+// SCROLL PROGRESS
+// ===================================
 const scrollProgress = document.querySelector('.scroll-progress');
 
-window.addEventListener('scroll', () => {
-    const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-    scrollProgress.style.transform = `scaleX(${scrollPercentage / 100})`;
-});
+if (scrollProgress) {
+    window.addEventListener('scroll', () => {
+        const scrollPercentage = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        scrollProgress.style.transform = `scaleX(${scrollPercentage / 100})`;
+    });
+}
 
 // ===================================
 // SMOOTH SCROLL
@@ -344,20 +352,35 @@ if (allFilterBtn) {
 // ===================================
 // APPLY FILTERS
 // ===================================
+const searchInput = document.getElementById('vacancySearch');
+
+if (searchInput) {
+    searchInput.addEventListener('input', () => {
+        applyFilters();
+    });
+}
+
+// ===================================
+// APPLY FILTERS
+// ===================================
 function applyFilters() {
     visibleCount = ITEMS_PER_PAGE;
+    const searchText = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
-    if (activeTags.size === 0) {
-        filteredVacancies = [...allVacancies];
-    } else {
-        // ФІКС: Фільтруємо тільки по primaryTags (перші 2 теги)
-        filteredVacancies = allVacancies.filter(v => {
-            return v.primaryTags && v.primaryTags.some(tag => {
-                const cleanTag = tag.replace('#', '');
-                return activeTags.has(cleanTag);
-            });
-        });
-    }
+    filteredVacancies = allVacancies.filter(v => {
+        // Tag filter
+        const matchesTags = activeTags.size === 0 || (v.primaryTags && v.primaryTags.some(tag => {
+            const cleanTag = tag.replace('#', '');
+            return activeTags.has(cleanTag);
+        }));
+
+        // Search filter
+        const matchesSearch = !searchText ||
+            v.cleanTitle.toLowerCase().includes(searchText) ||
+            (v.overview && v.overview.toLowerCase().includes(searchText));
+
+        return matchesTags && matchesSearch;
+    });
 
     renderVacancies();
 }
@@ -372,7 +395,7 @@ function renderVacancies() {
     const toShow = filteredVacancies.slice(0, visibleCount);
 
     if (toShow.length === 0) {
-        vacancyGrid.innerHTML = '<p class="no-results">За вашим запитом вакансій не знайдено. Спробуйте змінити фільтри.</p>';
+        vacancyGrid.innerHTML = '<p class="no-results">За вашим запитом вакансій не знайдено. Спробуйте змінити фільтри або пошуковий запит.</p>';
         if (loadMoreBtn) loadMoreBtn.style.display = 'none';
         return;
     }
@@ -608,10 +631,36 @@ if (contactForm) {
 }
 
 // ===================================
+// SCROLL REVEAL
+// ===================================
+// ===================================
+// SCROLL REVEAL
+// ===================================
+const revealElements = document.querySelectorAll('.reveal-on-scroll');
+if (revealElements.length > 0) {
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, {
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+}
+
+// ===================================
 // INITIALIZATION
 // ===================================
 document.addEventListener('DOMContentLoaded', () => {
-    loadVacancies();
+    if (typeof loadVacancies === 'function' && document.getElementById('vacancyGrid')) {
+        loadVacancies();
+    }
+
     console.log('%c36 ОБрМП', 'color: #035C6B; font-size: 24px; font-weight: bold;');
     console.log('%cСлава Україні! 🇺🇦', 'color: #c5a059; font-size: 16px;');
 });
