@@ -119,9 +119,12 @@ window.addEventListener('scroll', () => {
     });
 
     navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#') && href.length > 1) {
+            link.classList.remove('active');
+            if (href === `#${current}`) {
+                link.classList.add('active');
+            }
         }
     });
 });

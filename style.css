@@ -2338,3 +2338,194 @@ body::before {
         font-size: 2.5rem;
     }
 }
+
+/* ============================================
+   RECRUIT PATH TIMELINE (Modern Card Style)
+   ============================================ */
+.recruit-path {
+    background: linear-gradient(to bottom, var(--deep-sea), #081118);
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+}
+
+/* Background tactical grid decoration */
+.recruit-path::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+.recruit-timeline {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    position: relative;
+    margin-top: 60px;
+    z-index: 2;
+}
+
+@media (min-width: 1200px) {
+    .recruit-timeline {
+        grid-template-columns: repeat(3, 1fr);
+        /* 2 rows layout */
+        gap: 40px;
+    }
+}
+
+.rt-item {
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.rt-item:hover {
+    transform: translateY(-8px);
+    z-index: 10;
+}
+
+/* Card Content Design */
+.rt-content {
+    background: rgba(11, 21, 29, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Clean border */
+    padding: 30px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    clip-path: polygon(0 0,
+            100% 0,
+            100% calc(100% - 20px),
+            calc(100% - 20px) 100%,
+            0 100%);
+    /* Tactical cut */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Bottom "accent" line */
+.rt-content::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--text-gray), transparent);
+    transition: all 0.3s ease;
+}
+
+.rt-item:hover .rt-content {
+    background: rgba(11, 21, 29, 0.95);
+    border-color: rgba(3, 92, 107, 0.5);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8);
+}
+
+.rt-item:hover .rt-content::before {
+    background: var(--teal-glow);
+    height: 4px;
+    /* Thicker on hover */
+}
+
+.rt-item.final:hover .rt-content::before {
+    background: var(--bronze);
+}
+
+/* Big Number Watermark */
+.rt-marker {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-family: 'Teko', sans-serif;
+    font-size: 64px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.03);
+    line-height: 1;
+    z-index: 0;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.rt-item:hover .rt-marker {
+    color: rgba(3, 92, 107, 0.15);
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.rt-item.final:hover .rt-marker {
+    color: rgba(197, 160, 89, 0.15);
+}
+
+/* Time Badge */
+.rt-time {
+    display: inline-block;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--bronze);
+    letter-spacing: 2px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    padding: 4px 10px;
+    background: rgba(197, 160, 89, 0.1);
+    border: 1px solid rgba(197, 160, 89, 0.2);
+    align-self: flex-start;
+    /* Align left */
+    font-family: 'Montserrat', sans-serif;
+}
+
+.rt-content h3 {
+    font-family: 'Teko', sans-serif;
+    font-size: 32px;
+    /* Bigger title */
+    color: var(--text-white);
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+}
+
+.rt-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text-gray);
+    position: relative;
+    z-index: 1;
+}
+
+/* Remove old styles */
+.recruit-timeline::before {
+    display: none;
+}
+
+.rt-content::after {
+    display: none;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+    .recruit-timeline {
+        grid-template-columns: 1fr;
+        padding: 0 20px;
+    }
+
+    .rt-content {
+        padding: 25px;
+        /* Simplify clip-path slightly on mobile if needed */
+    }
+
+    .rt-marker {
+        font-size: 48px;
+        top: 15px;
+        right: 15px;
+    }
+}
