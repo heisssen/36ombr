@@ -73,7 +73,7 @@
 }
 
 .page-hero-title {
-    font-family: 'Cinzel', serif;
+    font-family: 'Oswald', sans-serif;
     font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 900;
     line-height: 1.1;
@@ -422,7 +422,7 @@
 }
 
 .cta-box h2 {
-    font-family: 'Cinzel', serif;
+    font-family: 'Oswald', sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 700;
     margin-bottom: 16px;
@@ -525,7 +525,7 @@
 
 .form-submit-btn {
     cursor: pointer;
-    font-family: 'Cinzel', serif;
+    font-family: 'Teko', sans-serif;
 }
 
 .form-note {
