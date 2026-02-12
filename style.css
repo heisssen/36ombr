@@ -257,19 +257,40 @@ body::before {
 }
 
 .brand-title {
-    font-family: 'Teko', sans-serif;
+    font-family: 'Oswald', sans-serif;
     font-weight: 700;
-    font-size: 24px;
+    font-size: 36px;
     color: var(--text-white);
     line-height: 1;
     letter-spacing: 1px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.brand-highlight {
+    background: linear-gradient(135deg, #c5a059 0%, #f0d58e 50%, #c5a059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: #c5a059;
+    filter: drop-shadow(0 0 10px rgba(197, 160, 89, 0.3));
+    font-size: 42px;
+    /* Make 36 slightly bigger */
 }
 
 .brand-subtitle {
-    font-size: 10px;
-    color: var(--bronze);
-    letter-spacing: 3px;
+    font-family: 'Oswald', sans-serif;
+    /* Match title font for unity */
+    font-weight: 500;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.6);
+    /* Cleaner look than dark bronze */
+    letter-spacing: 6px;
     text-transform: uppercase;
+    margin-top: 2px;
+    padding-left: 4px;
 }
 
 .nav-menu {
@@ -1281,14 +1302,26 @@ body::before {
     flex-wrap: wrap;
 }
 
+/* Stick-on Patch Style */
 .vacancy-badges span {
-    font-size: 10px;
+    background: #1a1f22;
+    color: var(--text-gray);
+    border: 1px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+    padding: 6px 14px;
+    font-family: 'Teko', sans-serif;
+    font-size: 14px;
     text-transform: uppercase;
-    color: var(--teal-glow);
-    border: 1px solid rgba(3, 92, 107, 0.3);
-    padding: 3px 8px;
+    font-weight: 500;
     letter-spacing: 1px;
-    background: rgba(3, 92, 107, 0.07);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    position: relative;
+    /* Fabric Texture */
+    background-image:
+        radial-gradient(#2a3035 15%, transparent 16%),
+        radial-gradient(#2a3035 15%, transparent 16%);
+    background-size: 4px 4px;
+    background-position: 0 0, 2px 2px;
 }
 
 .vacancy-teaser {
@@ -1299,76 +1332,94 @@ body::before {
 }
 
 .vacancy-content-wrapper {
-    padding: 28px 28px;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 0;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.vacancy-grid-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 30px;
 }
 
 .vacancy-block {
-    margin-bottom: 28px;
-    padding-bottom: 24px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    position: relative;
 }
 
-.vacancy-block:last-of-type {
-    border-bottom: none;
-}
-
-.vacancy-block h4 {
-    font-family: 'Teko', sans-serif;
-    font-size: 22px;
+/* Header with Icon */
+.block-header {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-white);
     text-transform: uppercase;
-    color: var(--teal-glow);
-    margin-bottom: 14px;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
 }
 
-.vacancy-block h4::before {
-    content: '';
-    width: 3px;
-    height: 18px;
-    background: var(--teal-glow);
-    flex-shrink: 0;
+.block-header .iconify {
+    font-size: 24px;
+    color: var(--bronze);
+    filter: drop-shadow(0 0 8px rgba(197, 160, 89, 0.3));
 }
 
-.vacancy-block.overview h4::before {
-    background: var(--bronze);
+.vacancy-block.requirements .block-header .iconify {
+    color: var(--teal-glow);
+    filter: drop-shadow(0 0 8px rgba(3, 92, 107, 0.4));
 }
 
-.vacancy-block p {
-    color: #bbb;
-    line-height: 1.8;
-    margin: 0;
-    font-size: 14px;
-}
-
-.vacancy-block ul {
+/* List Styling */
+.block-content ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
-.vacancy-block ul li {
+.block-content ul li {
     position: relative;
-    padding-left: 20px;
-    color: #bbb;
+    padding-left: 25px;
+    color: #ccc;
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 
-.vacancy-block ul li::before {
-    content: '—';
+/* Custom Bullet - Diamond Shape */
+.block-content ul li::before {
+    content: '';
     position: absolute;
     left: 0;
-    color: var(--teal-glow);
-    font-weight: 700;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    background: var(--teal-glow);
+    transform: rotate(45deg);
+    box-shadow: 0 0 6px var(--teal-glow);
+    opacity: 0.8;
+}
+
+.vacancy-block.duties .block-content ul li::before {
+    background: var(--bronze);
+    box-shadow: 0 0 6px var(--bronze);
+}
+
+.block-content p {
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.6;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
 }
 
 .vacancy-action {
@@ -1377,6 +1428,35 @@ body::before {
     display: flex;
     align-items: center;
     gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-copy-link {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: var(--text-gray);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    font-size: 20px;
+}
+
+.btn-copy-link:hover {
+    color: var(--teal-glow);
+    border-color: var(--teal-glow);
+    box-shadow: 0 0 15px rgba(3, 92, 107, 0.2);
+    background: rgba(3, 92, 107, 0.05);
+}
+
+.btn-copy-link.copied {
+    color: var(--bronze);
+    border-color: var(--bronze);
+    background: rgba(197, 160, 89, 0.1);
 }
 
 .vacancy-action .vacancy-ext-link {
@@ -1384,6 +1464,7 @@ body::before {
     color: var(--text-gray);
     text-decoration: none;
     transition: 0.3s;
+    margin-left: auto;
 }
 
 .vacancy-action .vacancy-ext-link:hover {

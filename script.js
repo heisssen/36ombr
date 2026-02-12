@@ -193,6 +193,7 @@ window.addEventListener('scroll', () => {
     }
 });
 
+
 // ===================================
 // VACANCY LOADING
 // ===================================
@@ -416,6 +417,8 @@ function renderVacancies() {
         const card = document.createElement('div');
         card.className = 'vacancy-item';
 
+
+
         // ФІКС: Показуємо primaryTags з повними назвами
         const displayTags = (vacancy.primaryTags || [])
             .map(t => {
@@ -428,7 +431,7 @@ function renderVacancies() {
         // Форматуємо опис
         let formattedDesc = vacancy.cleanOverview || vacancy.overview || "Опис вакансії відсутній.";
 
-        // Тизер - перше речення
+        // Тизер - перше речення (збережено для сумісності, але не виводиться)
         let teaser = formattedDesc.split('.')[0] + '.';
         if (teaser.length > 150) {
             teaser = teaser.substring(0, 147) + '...';
@@ -449,7 +452,6 @@ function renderVacancies() {
                         <h3>${vacancy.cleanTitle}</h3>
                         ${displayTags ? `<div class="vacancy-badges">${displayTags}</div>` : ''}
                     </div>
-                    <p class="vacancy-teaser">${teaser}</p>
                 </div>
                 <div class="vacancy-meta">
                     <span class="vacancy-toggle iconify" data-icon="mdi:chevron-down"></span>
@@ -458,31 +460,32 @@ function renderVacancies() {
             
             <div class="vacancy-body">
                 <div class="vacancy-content-wrapper">
-                    <div class="vacancy-block overview">
-                        <h4>Про вакансію</h4>
-                        <p>${formattedDesc}</p>
+                    <div class="vacancy-grid-layout">
+                        ${vacancy.duties ? `
+                        <div class="vacancy-block duties">
+                            <h4 class="block-header">
+                                <span class="iconify" data-icon="mdi:target"></span> 
+                                Обов'язки
+                            </h4>
+                            <div class="block-content">
+                                ${formatAsList(vacancy.duties)}
+                            </div>
+                        </div>` : ''}
+
+                        ${vacancy.requirements ? `
+                        <div class="vacancy-block requirements">
+                            <h4 class="block-header">
+                                <span class="iconify" data-icon="mdi:shield-check"></span> 
+                                Вимоги
+                            </h4>
+                            <div class="block-content">
+                                ${formatAsList(vacancy.requirements)}
+                            </div>
+                        </div>` : ''}
                     </div>
-
-                    ${vacancy.duties ? `
-                    <div class="vacancy-block">
-                        <h4>Обов'язки</h4>
-                        ${formatAsList(vacancy.duties)}
-                    </div>` : ''}
-
-                    ${vacancy.requirements ? `
-                    <div class="vacancy-block">
-                        <h4>Вимоги</h4>
-                        ${formatAsList(vacancy.requirements)}
-                    </div>` : ''}
-
-                    ${vacancy.conditions ? `
-                    <div class="vacancy-block">
-                        <h4>Умови</h4>
-                        ${formatAsList(vacancy.conditions)}
-                    </div>` : ''}
                     
                     <div class="vacancy-action">
-                        <a href="#contacts" class="btn-apply" onclick="document.getElementById('contacts').scrollIntoView({behavior: 'smooth'});">
+                        <a href="#contacts" class="btn-apply" style="flex-grow: 1; justify-content: center;" onclick="document.getElementById('contacts').scrollIntoView({behavior: 'smooth'});">
                             <span class="iconify" data-icon="mdi:send"></span>
                             Подати заявку
                         </a>
@@ -502,6 +505,11 @@ function renderVacancies() {
             loadMoreBtn.style.display = 'inline-block';
             loadMoreBtn.textContent = `Завантажити ще (${filteredVacancies.length - visibleCount})`;
         }
+    }
+
+    // Scan for new icons
+    if (window.Iconify) {
+        window.Iconify.scan();
     }
 }
 
