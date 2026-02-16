@@ -88,6 +88,15 @@
     max-width: 600px;
 }
 
+/* Gold accent text */
+.gold-text {
+    background: linear-gradient(135deg, #c5a059 0%, #f0d58e 50%, #c5a059 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 15px rgba(197, 160, 89, 0.3));
+}
+
 /* PAGE CONTENT */
 .page-content {
     padding: 60px 0 0;
@@ -96,10 +105,16 @@
 .content-section {
     padding: 60px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    position: relative;
 }
 
 .content-section:last-child {
     border-bottom: none;
+}
+
+/* Alternating section backgrounds for depth */
+.content-section:nth-child(even) {
+    background: rgba(3, 92, 107, 0.02);
 }
 
 .content-grid {
@@ -117,10 +132,27 @@
     color: var(--text-white);
     margin-bottom: 24px;
     line-height: 1.1;
+    position: relative;
+}
+
+/* Accent underline for section titles */
+.content-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal-glow), var(--bronze));
+    margin-top: 12px;
+    border-radius: 2px;
 }
 
 .content-title.centered {
     text-align: center;
+}
+
+.content-title.centered::after {
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .content-text p {
@@ -149,9 +181,10 @@
 }
 
 .highlight-card:hover {
-    background: rgba(3, 92, 107, 0.05);
-    border-color: rgba(3, 92, 107, 0.3);
+    background: rgba(3, 92, 107, 0.08);
+    border-color: rgba(3, 92, 107, 0.4);
     transform: translateX(5px);
+    box-shadow: 0 4px 20px rgba(3, 92, 107, 0.1);
 }
 
 .highlight-icon {
@@ -195,16 +228,39 @@
 
 .benefit-item {
     padding: 40px;
-    background: rgba(255, 255, 255, 0.015);
-    border: 1px solid rgba(255, 255, 255, 0.07);
+    background: linear-gradient(135deg, rgba(3, 92, 107, 0.04), rgba(255, 255, 255, 0.015));
+    border: 1px solid rgba(3, 92, 107, 0.15);
     transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decorative corner accent */
+.benefit-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--teal-glow), transparent);
+}
+
+.benefit-item::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--teal-glow), transparent);
 }
 
 .benefit-item:hover {
-    background: rgba(255, 255, 255, 0.03);
+    background: linear-gradient(135deg, rgba(3, 92, 107, 0.1), rgba(197, 160, 89, 0.03));
     border-color: var(--teal-glow);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(3, 92, 107, 0.15);
+    box-shadow: 0 10px 40px rgba(3, 92, 107, 0.2);
 }
 
 .benefit-icon {
@@ -217,7 +273,8 @@
 
 .benefit-item:hover .benefit-icon {
     color: var(--bronze);
-    transform: scale(1.1);
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px rgba(197, 160, 89, 0.4));
 }
 
 .benefit-item h4 {
@@ -226,6 +283,7 @@
     font-weight: 700;
     text-transform: uppercase;
     margin-bottom: 8px;
+    color: var(--text-white);
 }
 
 .benefit-item p {
@@ -246,11 +304,12 @@
     gap: 24px;
     padding: 30px 0;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    transition: 0.3s;
+    transition: all 0.4s ease;
 }
 
 .step-item:hover {
     padding-left: 10px;
+    background: rgba(3, 92, 107, 0.03);
 }
 
 .step-item:last-child {
@@ -268,7 +327,8 @@
 }
 
 .step-item:hover .step-number {
-    color: var(--teal-glow);
+    color: var(--bronze);
+    text-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
 }
 
 .step-content h4 {
@@ -278,6 +338,11 @@
     text-transform: uppercase;
     margin-bottom: 8px;
     color: var(--text-white);
+    transition: 0.3s;
+}
+
+.step-item:hover .step-content h4 {
+    color: var(--teal-glow);
 }
 
 .step-content p {
@@ -297,16 +362,23 @@
 .comparison-card {
     padding: 40px;
     border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.3s ease;
 }
 
 .comparison-card.bad {
-    background: rgba(200, 50, 50, 0.03);
-    border-color: rgba(200, 50, 50, 0.15);
+    background: linear-gradient(135deg, rgba(200, 50, 50, 0.06), rgba(200, 50, 50, 0.02));
+    border-color: rgba(200, 50, 50, 0.2);
 }
 
 .comparison-card.good {
-    background: rgba(3, 92, 107, 0.05);
-    border-color: rgba(3, 92, 107, 0.3);
+    background: linear-gradient(135deg, rgba(3, 92, 107, 0.08), rgba(3, 92, 107, 0.03));
+    border-color: rgba(3, 92, 107, 0.35);
+    box-shadow: 0 4px 30px rgba(3, 92, 107, 0.08);
+}
+
+.comparison-card.good:hover {
+    border-color: var(--teal-glow);
+    box-shadow: 0 8px 40px rgba(3, 92, 107, 0.15);
 }
 
 .comparison-card h3 {
@@ -325,6 +397,7 @@
 
 .comparison-card.good h3 .iconify {
     color: var(--teal-glow);
+    filter: drop-shadow(0 0 6px rgba(3, 92, 107, 0.4));
 }
 
 .comparison-card ul {
@@ -338,6 +411,12 @@
     color: #ccc;
     border-bottom: 1px solid rgba(255, 255, 255, 0.04);
     line-height: 1.7;
+    transition: 0.3s;
+}
+
+.comparison-card.good ul li:hover {
+    color: var(--text-white);
+    padding-left: 5px;
 }
 
 .comparison-card ul li:last-child {
@@ -353,20 +432,26 @@
 
 .salary-card {
     padding: 40px;
-    background: rgba(255, 255, 255, 0.015);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.02), rgba(3, 92, 107, 0.03));
     border: 1px solid rgba(255, 255, 255, 0.08);
     text-align: center;
-    transition: 0.3s;
+    transition: all 0.4s ease;
 }
 
 .salary-card:hover {
     border-color: var(--teal-glow);
     transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(3, 92, 107, 0.15);
 }
 
 .salary-card.featured {
     border-color: var(--bronze);
-    background: rgba(197, 160, 89, 0.03);
+    background: linear-gradient(135deg, rgba(197, 160, 89, 0.06), rgba(197, 160, 89, 0.02));
+    box-shadow: 0 4px 20px rgba(197, 160, 89, 0.1);
+}
+
+.salary-card.featured:hover {
+    box-shadow: 0 8px 40px rgba(197, 160, 89, 0.2);
 }
 
 .salary-label {
@@ -383,10 +468,12 @@
     font-weight: 700;
     color: var(--teal-glow);
     margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(3, 92, 107, 0.2);
 }
 
 .salary-card.featured .salary-amount {
     color: var(--bronze);
+    text-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
 }
 
 .salary-card p {
@@ -405,8 +492,8 @@
 .cta-box {
     text-align: center;
     padding: 60px 40px;
-    background: rgba(3, 92, 107, 0.05);
-    border: 1px solid rgba(3, 92, 107, 0.2);
+    background: linear-gradient(135deg, rgba(3, 92, 107, 0.08), rgba(197, 160, 89, 0.03));
+    border: 1px solid rgba(3, 92, 107, 0.25);
     position: relative;
     overflow: hidden;
 }
@@ -421,12 +508,27 @@
     background: linear-gradient(90deg, transparent, var(--teal-glow), var(--bronze), transparent);
 }
 
+/* Bottom accent line */
+.cta-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(3, 92, 107, 0.3), transparent);
+}
+
 .cta-box h2 {
     font-family: 'Oswald', sans-serif;
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 700;
     margin-bottom: 16px;
     line-height: 1.2;
+    background: linear-gradient(135deg, var(--text-white), var(--bronze));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .cta-box p {
@@ -496,8 +598,8 @@
 .form-group textarea:focus,
 .form-group select:focus {
     border-color: var(--teal-glow);
-    background: rgba(3, 92, 107, 0.05);
-    box-shadow: 0 0 15px rgba(3, 92, 107, 0.15);
+    background: rgba(3, 92, 107, 0.06);
+    box-shadow: 0 0 20px rgba(3, 92, 107, 0.15), inset 0 0 10px rgba(3, 92, 107, 0.05);
 }
 
 .form-group input::placeholder,
@@ -573,6 +675,39 @@
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* ============================================
+   CONTACT INFO BLOCKS (sidebar)
+   ============================================ */
+.contact-info {
+    position: relative;
+}
+
+.contact-info::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(3, 92, 107, 0.08), transparent 70%);
+    pointer-events: none;
+    border-radius: 8px;
+}
+
+.contact-block {
+    border-left: 2px solid rgba(3, 92, 107, 0.3);
+    transition: 0.3s;
+}
+
+.contact-block:hover {
+    border-left-color: var(--bronze);
+}
+
+/* Social links glow */
+.social-links a:hover .iconify {
+    filter: drop-shadow(0 0 8px rgba(3, 92, 107, 0.5));
 }
 
 /* RESPONSIVE */

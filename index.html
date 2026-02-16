@@ -4,8 +4,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>36 ОБрМП | SPADOK</title>
-    <meta name="description" content="36 окрема бригада морської піхоти. Вірні завжди. Долучайся до легенди.">
+    <title>36 ОБрМП | Вірні завжди</title>
+    <meta name="description"
+        content="36 окрема бригада морської піхоти імені контр-адмірала Михайла Білинського. Вірні завжди. Долучайся до легенди — обери свій шлях у морській піхоті.">
+    <meta name="keywords" content="36 ОБрМП, морська піхота, вакансії ЗСУ, контракт, прямий рекрутинг, служба, Україна">
+    <!-- Open Graph -->
+    <meta property="og:title" content="36 ОБрМП — Вірні завжди">
+    <meta property="og:description"
+        content="Обери свій шлях у морській піхоті. Контракт, прямий рекрутинг, кар'єра — 100+ вакансій.">
+    <meta property="og:image" content="logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="uk_UA">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png">
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;600;700&family=Teko:wght@400;600;700&display=swap"
         rel="stylesheet">
@@ -88,17 +99,17 @@
 
             <div class="hero-stats reveal-on-scroll">
                 <div class="stat-item">
-                    <span class="stat-number">11</span>
+                    <span class="stat-number" data-target="11">0</span>
                     <span class="stat-label">Років війни</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
-                    <span class="stat-number">10000+</span>
+                    <span class="stat-number" data-target="10000" data-suffix="+">0</span>
                     <span class="stat-label">Знищених ворогів</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat-item">
-                    <span class="stat-number">100+</span>
+                    <span class="stat-number" data-target="100" data-suffix="+">0</span>
                     <span class="stat-label">Вакансій</span>
                 </div>
             </div>
@@ -141,7 +152,7 @@
                             <div class="about-tl-content">
                                 <h4>КРИМ. ВІРНІСТЬ ПРИСЯЗІ</h4>
                                 <p>Історія легендарної бригади морської піхоти почалася у Криму. Вірність Українському
-                                    Народові".</p>
+                                    Народові.</p>
                             </div>
                         </div>
                         <div class="about-tl-item">
@@ -235,7 +246,7 @@
                         <li><span class="check iconify" data-icon="mdi:check-bold"></span>Підйомні та пільги на навчання
                         </li>
                     </ul>
-                    <a href="contract-18-24.html" class="btn-path">Деталі програми</a>
+                    <a href="contract-18-24.html" class="btn-path">Хочу на контракт</a>
                 </div>
 
                 <div class="path-card featured">
@@ -250,7 +261,7 @@
                             спеціальністю</li>
                         <li><span class="check iconify" data-icon="mdi:check-bold"></span>Персональний супровід</li>
                     </ul>
-                    <a href="direct-recruiting.html" class="btn-path featured">Деталі та вакансії</a>
+                    <a href="direct-recruiting.html" class="btn-path featured">Обрати вакансію</a>
                 </div>
 
                 <div class="path-card">
@@ -266,7 +277,7 @@
                         <li><span class="check iconify" data-icon="mdi:check-bold"></span>Додаткові державні і відомчі
                             пільги</li>
                     </ul>
-                    <a href="career.html" class="btn-path">Умови служби</a>
+                    <a href="career.html" class="btn-path">Будувати кар'єру</a>
                 </div>
             </div>
         </div>
@@ -688,6 +699,44 @@
                             унікальні знання та навички кожному новобранцю.</p>
                     </div>
                 </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Які виплати при пораненні?</h3>
+                        <span class="faq-toggle iconify" data-icon="mdi:chevron-down"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Військовослужбовці, які отримали поранення, мають право на одноразову грошову допомогу
+                            залежно від ступеня тяжкості — від 100 000 до 700 000 грн. Додатково: безкоштовне лікування
+                            та реабілітація, у тому числі за кордоном. Бригада забезпечує юридичний супровід для
+                            швидкого оформлення всіх виплат.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Скільки днів відпустки та як працює ротація?</h3>
+                        <span class="faq-toggle iconify" data-icon="mdi:chevron-down"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Щорічна основна відпустка — 30 календарних днів. Додаткова відпустка за участь у бойових діях
+                            — до 15 днів. Ротація підрозділів відбувається регулярно: бойове чергування змінюється
+                            періодами навчання та відновлення в тилу. Командування контролює баланс навантаження.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <h3>Що з сім'єю та житлом?</h3>
+                        <span class="faq-toggle iconify" data-icon="mdi:chevron-down"></span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Військовослужбовці за контрактом мають право на службове житло або грошову компенсацію за
+                            оренду. Сім'ї отримують доступ до безкоштовного медобслуговування, пільги на навчання дітей
+                            та додаткову соціальну підтримку. Бригада активно співпрацює з волонтерськими організаціями
+                            для допомоги родинам.</p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -834,7 +883,7 @@
             </div>
 
             <div class="footer-bottom">
-                <p>&copy; 2024 36 ОБрМП. Всі права захищено.</p>
+                <p>&copy; 2025 36 ОБрМП. Всі права захищено.</p>
                 <div class="footer-socials">
                     <a href="https://t.me/ua_marines_36brigade" target="_blank"><span class="iconify"
                             data-icon="mdi:telegram"></span></a>

@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>36 ОБрМП | Адмін-панель</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Oswald:wght@400;600;700&family=Teko:wght@400;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Admin Specific Styles */
+        body {
+            padding-top: 100px;
+            /* Space for fixed navbar */
+            background-color: #0b151d;
+            /* Slightly lighter than deep-sea for better contrast */
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--teal-glow);
+            padding-bottom: 20px;
+        }
+
+        .admin-title {
+            font-family: 'Oswald', sans-serif;
+            color: var(--bronze);
+            font-size: 2rem;
+            text-transform: uppercase;
+        }
+
+        .admin-controls {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-admin {
+            padding: 10px 20px;
+            background: rgba(3, 92, 107, 0.2);
+            border: 1px solid var(--teal-glow);
+            color: var(--text-white);
+            cursor: pointer;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-admin:hover {
+            background: var(--teal-glow);
+            color: white;
+        }
+
+        .btn-admin.primary {
+            background: var(--bronze);
+            color: var(--deep-sea);
+            border-color: var(--bronze);
+        }
+
+        .btn-admin.primary:hover {
+            background: white;
+            box-shadow: 0 0 15px var(--bronze);
+        }
+
+        /* Editor Sections */
+        .editor-section {
+            background: rgba(5, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 4px;
+        }
+
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            color: var(--teal-glow);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .section-title:hover {
+            color: var(--text-white);
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            color: var(--text-gray);
+            margin-bottom: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-white);
+            padding: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--teal-glow);
+            box-shadow: 0 0 10px rgba(3, 92, 107, 0.3);
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        /* Lists */
+        .list-container {
+            margin-left: 20px;
+            border-left: 2px solid rgba(255, 255, 255, 0.05);
+            padding-left: 20px;
+        }
+
+        .list-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px;
+            margin-bottom: 15px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-remove {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: #ff4d4d;
+            cursor: pointer;
+            font-size: 1.2rem;
+            opacity: 0.7;
+            transition: 0.3s;
+        }
+
+        .btn-remove:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+
+        .btn-add {
+            margin-top: 10px;
+            width: 100%;
+            text-align: center;
+            justify-content: center;
+        }
+
+        /* Code Preview */
+        .preview-json {
+            background: #000;
+            color: #0f0;
+            font-family: monospace;
+            padding: 20px;
+            white-space: pre-wrap;
+            border: 1px solid var(--teal-glow);
+            margin-top: 20px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--teal-glow);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: 0.3s;
+            z-index: 10000;
+        }
+
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Nested Object Styling */
+        .nested-object {
+            margin-left: 15px;
+            margin-top: 10px;
+            border-left: 1px dashed rgba(255, 255, 255, 0.2);
+            padding-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- Navbar -->
+        <nav class="navbar" id="navbar">
+            <div class="nav-border"></div>
+            <div class="nav-container">
+                <a href="index.html" class="brand">
+                    <img src="logo.png" alt="36 Logo" class="brand-logo">
+                    <div class="brand-text">
+                        <span class="brand-title"><span class="brand-highlight">36</span> ОБрМП</span>
+                        <span class="brand-subtitle">ADMIN PANEL</span>
+                    </div>
+                </a>
+                <div class="admin-controls">
+                    <button @click="loadContent" class="btn-admin" title="Reload from file (requires server)">
+                        <span class="iconify" data-icon="mdi:refresh"></span> Скинути
+                    </button>
+                    <button @click="saveContent" class="btn-admin primary">
+                        <span class="iconify" data-icon="mdi:content-save"></span> Зберегти JSON
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="admin-container">
+            <div class="admin-header">
+                <h1 class="admin-title">Редагування контенту</h1>
+            </div>
+
+            <div v-if="loading" class="loading-content">
+                <div class="loading-text">Завантаження даних...</div>
+            </div>
+
+            <div v-else>
+                <!-- Recursive Component for rendering sections -->
+                <div v-for="(sectionData, sectionKey) in content" :key="sectionKey" class="editor-section">
+                    <div class="section-title" @click="toggleSection(sectionKey)">
+                        {{ formatLabel(sectionKey) }}
+                        <span class="iconify"
+                            :data-icon="openSections[sectionKey] ? 'mdi:chevron-up' : 'mdi:chevron-down'"></span>
+                    </div>
+
+                    <div v-if="openSections[sectionKey]" class="section-content">
+                        <recursive-editor :data="sectionData" :parent-key="sectionKey"
+                            @update:data="updateData(sectionKey, $event)"></recursive-editor>
+                    </div>
+                </div>
+            </div>
+
+            <div v-if="showPreview">
+                <h3 class="admin-title">Попередній перегляд JSON</h3>
+                <div class="preview-json">{{ JSON.stringify(content, null, 2) }}</div>
+            </div>
+        </div>
+
+        <!-- Notification Toast -->
+        <div class="notification" :class="{ show: notification.show }">
+            {{ notification.message }}
+        </div>
+    </div>
+
+    <script>
+        const { createApp, ref, reactive, onMounted } = Vue;
+
+        // Recursive Editor Component
+        const RecursiveEditor = {
+            name: 'RecursiveEditor',
+            props: ['data', 'parentKey'],
+            emits: ['update:data'],
+            setup(props, { emit }) {
+
+                const isObject = (val) => val && typeof val === 'object' && !Array.isArray(val);
+                const isArray = (val) => Array.isArray(val);
+
+                // Helper to check if a node is a leaf definition (has 'type' and 'value'/'items')
+                const isLeafDefinition = (node) => {
+                    return isObject(node) && node.hasOwnProperty('type') && (node.hasOwnProperty('value') || node.hasOwnProperty('items'));
+                };
+
+                const updateLeaf = (key, newValue) => {
+                    const updated = { ...props.data };
+                    updated[key].value = newValue;
+                    emit('update:data', updated);
+                };
+
+                const updateList = (key, newList) => {
+                    const updated = { ...props.data };
+                    updated[key].items = newList;
+                    emit('update:data', updated);
+                };
+
+                const addItem = (list) => {
+                    // Simple logic to add empty string or empty object based on first item
+                    let newItem = "";
+                    if (list.length > 0 && typeof list[0] === 'object') {
+                        newItem = JSON.parse(JSON.stringify(list[0]));
+                        // Clear values in new object
+                        Object.keys(newItem).forEach(k => newItem[k] = "");
+                    }
+                    list.push(newItem);
+                };
+
+                const removeItem = (list, index) => {
+                    list.splice(index, 1);
+                };
+
+                return {
+                    isObject,
+                    isArray,
+                    isLeafDefinition,
+                    updateLeaf,
+                    updateList,
+                    addItem,
+                    removeItem
+                };
+            },
+            template: `
+                <div class="recursive-container">
+                    <!-- Case 1: The current data object IS a leaf definition itself (e.g. inside a loop) -->
+                     <!-- Not strictly possible with current structure logic where we iterate keys, but handled below -->
+
+                    <!-- Iterate through keys of the object -->
+                    <div v-for="(value, key) in data" :key="key" class="field-wrapper">
+                        
+                        <!-- Scenario A: It's a configured field (has type, label, value) -->
+                        <div v-if="isLeafDefinition(value)" class="form-group">
+                            <label class="form-label">{{ value.label || key }}</label>
+                            
+                            <!-- Text Input -->
+                            <input v-if="value.type === 'text'" 
+                                type="text" 
+                                v-model="value.value" 
+                                class="form-input"
+                            >
+                            
+                            <!-- Textarea -->
+                            <textarea v-if="value.type === 'textarea'" 
+                                v-model="value.value" 
+                                class="form-textarea"
+                            ></textarea>
+                            
+                            <!-- List -->
+                            <div v-if="value.type === 'list'" class="list-container">
+                                <div v-for="(item, index) in value.items" :key="index" class="list-item">
+                                    <button @click="removeItem(value.items, index)" class="btn-remove" title="Remove Item">
+                                        <span class="iconify" data-icon="mdi:close"></span>
+                                    </button>
+                                    
+                                    <!-- Simple List (Strings) -->
+                                    <textarea v-if="typeof item === 'string'" v-model="value.items[index]" class="form-textarea" rows="2"></textarea>
+                                    
+                                    <!-- Complex List (Objects) -->
+                                    <div v-else>
+                                         <div v-for="(subVal, subKey) in item" :key="subKey" class="form-group">
+                                            <label class="form-label">{{ subKey }}</label>
+                                            <textarea v-model="item[subKey]" class="form-textarea" rows="2"></textarea>
+                                         </div>
+                                    </div>
+                                </div>
+                                <button @click="addItem(value.items)" class="btn-admin btn-add">
+                                    <span class="iconify" data-icon="mdi:plus"></span> Додати елемент
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Scenario B: It's a nested section (plain object without 'type') -->
+                        <div v-else-if="isObject(value)" class="nested-object">
+                             <h4 class="form-label" style="color: var(--bronze); margin-top: 15px; text-transform: uppercase;">{{ key }}</h4>
+                             <recursive-editor :data="value"></recursive-editor>
+                        </div>
+                    </div>
+                </div>
+            `
+        };
+
+        createApp({
+            components: {
+                RecursiveEditor
+            },
+            setup() {
+                const content = ref({});
+                const loading = ref(true);
+                const openSections = reactive({});
+                const showPreview = ref(false);
+                const notification = reactive({ show: false, message: '' });
+
+                const loadContent = async () => {
+                    loading.value = true;
+                    try {
+                        const response = await fetch('site_content.json');
+                        if (!response.ok) throw new Error('Failed to load JSON');
+                        const data = await response.json();
+                        content.value = data;
+
+                        // Initialize all sections as closed
+                        Object.keys(data).forEach(key => {
+                            openSections[key] = false;
+                        });
+                        // Open first one by default
+                        if (Object.keys(data).length > 0) openSections[Object.keys(data)[0]] = true;
+
+                    } catch (error) {
+                        console.error(error);
+                        showNotification('Помилка завантаження! Переконайтеся, що запущено локальний сервер.', true);
+                        // Fallback data or empty init could go here
+                    } finally {
+                        loading.value = false;
+                    }
+                };
+
+                const saveContent = () => {
+                    const dataStr = JSON.stringify(content.value, null, 2);
+                    const blob = new Blob([dataStr], { type: "application/json" });
+                    const url = URL.createObjectURL(blob);
+
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = "site_content.json";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+
+                    showNotification('Файл завантажено! Замініть ним старий файл у папці проекту.');
+                };
+
+                const toggleSection = (key) => {
+                    openSections[key] = !openSections[key];
+                };
+
+                const formatLabel = (key) => {
+                    return key.replace(/_/g, ' ').toUpperCase();
+                };
+
+                const updateData = (key, newData) => {
+                    content.value[key] = newData;
+                };
+
+                const showNotification = (msg, error = false) => {
+                    notification.message = msg;
+                    notification.show = true;
+                    setTimeout(() => {
+                        notification.show = false;
+                    }, 4000);
+                };
+
+                onMounted(() => {
+                    loadContent();
+                });
+
+                return {
+                    content,
+                    loading,
+                    openSections,
+                    showPreview,
+                    saveContent,
+                    loadContent,
+                    toggleSection,
+                    formatLabel,
+                    updateData,
+                    notification
+                };
+            }
+        }).mount('#app');
+    </script>
+</body>
+
+</html>

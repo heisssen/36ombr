@@ -132,20 +132,14 @@ window.addEventListener('scroll', () => {
 // ===================================
 // COUNTER ANIMATION
 // ===================================
-const counters = document.querySelectorAll('.stat-number');
 let counterActivated = false;
 
 function animateCounters() {
-    counters.forEach(counter => {
-        // Отримуємо цільове значення з тексту або атрибута
-        const rawText = counter.textContent.trim();
-        const target = parseInt(rawText.replace(/\D/g, '')) || parseInt(counter.getAttribute('data-count'));
-
-        // Якщо не вдалося отримати число, пропускаємо
+    const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+    statNumbers.forEach(counter => {
+        const target = parseInt(counter.dataset.target);
+        const suffix = counter.dataset.suffix || '';
         if (!target) return;
-
-        // Зберігаємо суфікс (наприклад, "+")
-        const suffix = rawText.replace(/[0-9]/g, '');
 
         const duration = 2000;
         const increment = target / (duration / 16);
@@ -154,10 +148,10 @@ function animateCounters() {
         const updateCounter = () => {
             current += increment;
             if (current < target) {
-                counter.textContent = Math.floor(current) + suffix;
+                counter.textContent = Math.floor(current).toLocaleString('uk-UA') + suffix;
                 requestAnimationFrame(updateCounter);
             } else {
-                counter.textContent = target + suffix;
+                counter.textContent = target.toLocaleString('uk-UA') + suffix;
             }
         };
 
@@ -199,9 +193,27 @@ window.addEventListener('scroll', () => {
 // ===================================
 async function loadVacancies() {
     try {
-        const response = await fetch(VACANCIES_URL);
-        if (!response.ok) throw new Error('Failed to load vacancies');
-        allVacancies = await response.json();
+        let data;
+
+        // fetch() не працює з file:// через CORS — використовуємо XMLHttpRequest як фолбек
+        if (window.location.protocol === 'file:') {
+            data = await new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', VACANCIES_URL, true);
+                xhr.responseType = 'json';
+                xhr.onload = () => xhr.status === 0 || xhr.status === 200
+                    ? resolve(xhr.response)
+                    : reject(new Error('XHR failed'));
+                xhr.onerror = () => reject(new Error('XHR error'));
+                xhr.send();
+            });
+        } else {
+            const response = await fetch(VACANCIES_URL);
+            if (!response.ok) throw new Error('Failed to load vacancies');
+            data = await response.json();
+        }
+
+        allVacancies = data;
 
         // Обробка даних
         allVacancies = allVacancies.map(v => ({
@@ -656,6 +668,24 @@ if (galleryVideos.length > 0) {
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm) {
+    // Маска телефону
+    const phoneInput = contactForm.querySelector('input[type="tel"]');
+    if (phoneInput) {
+        phoneInput.addEventListener('input', (e) => {
+            let val = e.target.value.replace(/\D/g, '');
+            if (val.startsWith('380')) val = val;
+            else if (val.startsWith('0')) val = '38' + val;
+            else if (!val.startsWith('3')) val = '380' + val;
+
+            let formatted = '+' + val.slice(0, 2);
+            if (val.length > 2) formatted += ' ' + val.slice(2, 5);
+            if (val.length > 5) formatted += ' ' + val.slice(5, 8);
+            if (val.length > 8) formatted += ' ' + val.slice(8, 10);
+            if (val.length > 10) formatted += ' ' + val.slice(10, 12);
+            e.target.value = formatted;
+        });
+    }
+
     contactForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
@@ -664,10 +694,34 @@ if (contactForm) {
 
         console.log('Form submitted:', data);
 
-        alert('Дякуємо за вашу заявку! Ми зв\'яжемося з вами найближчим часом.');
+        // Toast-повідомлення замість alert
+        showToast('Дякуємо за вашу заявку! Ми зв\'яжемося з вами найближчим часом. 🇺🇦');
 
         contactForm.reset();
     });
+}
+
+// Toast-сповіщення
+function showToast(message) {
+    const existing = document.querySelector('.toast-notification');
+    if (existing) existing.remove();
+
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.innerHTML = `
+        <span class="toast-icon">✓</span>
+        <span class="toast-text">${message}</span>
+    `;
+    document.body.appendChild(toast);
+
+    requestAnimationFrame(() => {
+        toast.classList.add('show');
+    });
+
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 400);
+    }, 4000);
 }
 
 // ===================================
@@ -777,6 +831,7 @@ if (revealElements.length > 0) {
     revealElements.forEach(el => revealObserver.observe(el));
 }
 
+
 // ===================================
 // INITIALIZATION
 // ===================================
@@ -784,6 +839,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (typeof loadVacancies === 'function' && document.getElementById('vacancyGrid')) {
         loadVacancies();
     }
+
+    // Lazy loading для зображень
+    document.querySelectorAll('img:not([loading])').forEach(img => {
+        img.setAttribute('loading', 'lazy');
+    });
 
     console.log('%c36 ОБрМП', 'color: #035C6B; font-size: 24px; font-weight: bold;');
     console.log('%cСлава Україні! 🇺🇦', 'color: #c5a059; font-size: 16px;');
