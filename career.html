@@ -290,7 +290,13 @@
                     </p>
                 </div>
 
-                <form class="apply-form" id="applyForm">
+                <form class="apply-form" id="applyForm" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="3a544281-3415-47a4-a528-1fc207697b15">
+                    <input type="hidden" name="subject" value="Заявка — Професійна кар'єра">
+                    <input type="hidden" name="from_name" value="36 ОБрМП — Професійна кар'єра">
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                     <div class="form-row">
                         <div class="form-group">
                             <label for="fullName">Ім'я та прізвище *</label>
@@ -325,7 +331,6 @@
                         <button type="submit" class="btn-hero form-submit-btn">
                             <span class="iconify" data-icon="mdi:send"></span>
                             Надіслати заявку
-                        </button>
                         </button>
                     </div>
                 </form>
@@ -439,24 +444,7 @@
             });
         }
 
-        // Form submission
-        const applyForm = document.getElementById('applyForm');
-        if (applyForm) {
-            applyForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const formData = new FormData(applyForm);
-                const data = Object.fromEntries(formData);
-                console.log('Application submitted:', data);
 
-                applyForm.innerHTML = `
-                    <div class="form-success">
-                        <h3>✓ Заявку надіслано!</h3>
-                        <p>Рекрутер зв'яжеться з тобою протягом 24 годин.<br>Дякуємо за довіру до 36 ОБрМП!</p>
-                    </div>
-                `;
-                applyForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            });
-        }
     </script>
 </body>
 

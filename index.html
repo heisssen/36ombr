@@ -755,28 +755,34 @@
             </div>
 
             <div class="contacts-grid">
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                    <input type="hidden" name="access_key" value="3a544281-3415-47a4-a528-1fc207697b15">
+                    <input type="hidden" name="subject" value="Заявка з головної сторінки — 36 ОБрМП">
+                    <input type="hidden" name="from_name" value="36 ОБрМП — Головна">
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success">
+                    <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
                     <h3>Залишити заявку</h3>
 
                     <div class="form-group">
                         <label>Ім'я та прізвище</label>
-                        <input type="text" required>
+                        <input type="text" name="name" required>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group">
                             <label>Телефон</label>
-                            <input type="tel" placeholder="+380" required>
+                            <input type="tel" name="phone" placeholder="+380" required>
                         </div>
                         <div class="form-group">
                             <label>Email</label>
-                            <input type="email">
+                            <input type="email" name="email">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label>Що вас цікавить?</label>
-                        <select required>
+                        <select name="interest" required>
                             <option value="">Оберіть варіант</option>
                             <option>Контракт 18-24</option>
                             <option>Прямий рекрутинг</option>
@@ -788,7 +794,7 @@
 
                     <div class="form-group">
                         <label>Повідомлення</label>
-                        <textarea rows="4"></textarea>
+                        <textarea name="message" rows="4"></textarea>
                     </div>
 
                     <button type="submit" class="btn-submit">Надіслати заявку</button>
