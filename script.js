@@ -686,19 +686,55 @@ if (contactForm) {
         });
     }
 
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    contactForm.addEventListener('submit', (e) => handleWeb3Submit(e, contactForm));
+}
 
-        const formData = new FormData(contactForm);
-        const data = Object.fromEntries(formData);
+// ===================================
+// UNIVERSAL WEB3FORMS SUBMIT HANDLER
+// ===================================
+async function handleWeb3Submit(e, form) {
+    e.preventDefault();
 
-        console.log('Form submitted:', data);
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalHTML = submitBtn.innerHTML;
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span class="iconify" data-icon="mdi:loading" style="animation: spin 1s linear infinite"></span> Надсилаємо...';
 
-        // Toast-повідомлення замість alert
-        showToast('Дякуємо за вашу заявку! Ми зв\'яжемося з вами найближчим часом. 🇺🇦');
+    try {
+        const formData = new FormData(form);
+        const object = Object.fromEntries(formData);
+        const json = JSON.stringify(object);
 
-        contactForm.reset();
-    });
+        const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: json
+        });
+        const result = await response.json();
+
+        if (result.success) {
+            showToast('✓ Заявку надіслано! Ми зв\'яжемося з вами найближчим часом. 🇺🇦');
+            form.reset();
+        } else {
+            showToast('❌ Помилка відправки. Спробуйте ще раз або зателефонуйте нам.');
+            console.error('Web3Forms error:', result);
+        }
+    } catch (error) {
+        showToast('❌ Помилка мережі. Перевірте інтернет-з\'єднання.');
+        console.error('Network error:', error);
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalHTML;
+    }
+}
+
+// Підключаємо applyForm (субсторінки: contract-18-24, direct-recruiting, career)
+const applyForm = document.getElementById('applyForm');
+if (applyForm) {
+    applyForm.addEventListener('submit', (e) => handleWeb3Submit(e, applyForm));
 }
 
 // Toast-сповіщення
@@ -709,7 +745,6 @@ function showToast(message) {
     const toast = document.createElement('div');
     toast.className = 'toast-notification';
     toast.innerHTML = `
-        <span class="toast-icon">✓</span>
         <span class="toast-text">${message}</span>
     `;
     document.body.appendChild(toast);
@@ -721,7 +756,7 @@ function showToast(message) {
     setTimeout(() => {
         toast.classList.remove('show');
         setTimeout(() => toast.remove(), 400);
-    }, 4000);
+    }, 5000);
 }
 
 // ===================================

@@ -2216,6 +2216,16 @@ body::before {
     }
 }
 
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 /* CONTACTS */
 .contacts-grid {
     display: grid;
